@@ -1,0 +1,8 @@
+grant codeBase "${myactivation.impl.codebase}" {
+    
+    // permission to read and write object's file
+    permission java.io.FilePermission "${myactivation.file}","read,write";
+    
+    // permission to listen on an anonymous port
+    permission java.net.SocketPermission "*:1024-","accept";
+};

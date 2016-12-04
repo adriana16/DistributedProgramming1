@@ -1,0 +1,1 @@
+javac SumApp\*.java *.java

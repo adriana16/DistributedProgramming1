@@ -1,0 +1,1 @@
+Catalogul web se completeaza cu catalogul resources.

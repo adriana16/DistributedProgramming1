@@ -1,0 +1,96 @@
+<project basedir="." default="generate.war">
+
+  <property name="TOMCAT_HOME" value="d:/JavaApp/apache-tomcat-7.0.42"/> 
+  <property name="dist.name" value="apphelloP" />
+  <property name="dist.dir" value="dist" />
+  <property name="mywarfile" value="dist/${dist.name}.war"/>
+  
+  <path id="myclasspath">
+    <fileset dir="web/WEB-INF/lib">
+       <include name="*.jar"/>
+    </fileset>
+    <fileset dir="lib">
+       <include name="*.jar"/>
+    </fileset>
+    <pathelement path="${TOMCAT_HOME}/lib/servlet-api.jar" />  
+  </path> 
+  
+  <taskdef resource="cargo.tasks" classpathref="myclasspath"/> 
+  
+  <target name="init">
+    <delete dir="${dist.dir}"/>
+    <delete dir="web/WEB-INF/classes"/>
+    <mkdir dir="web/WEB-INF/classes"/>
+    <mkdir dir="${dist.dir}" />
+  </target>
+  
+  <target name="compile" depends="init">
+    <javac classpathref="myclasspath"
+           includeantruntime="false"
+           srcdir="${basedir}/src" 
+           destdir="web/WEB-INF/classes" />             
+  </target>
+  
+  <target name="generate.war" depends="compile">
+    <jar destfile="${dist.dir}/${dist.name}.war" basedir="web" />
+  </target>
+  
+  <target name="cargodeploy" description="tomcat">
+    <echo message="Starting Cargo..."/>
+    <echo message="Using tomcat.home = ${TOMCAT_HOME} "/>
+    <echo message="Using war = ${mywarfile} "/>
+      
+    <cargo containerId="tomcat7x"  type="remote"
+        action="deploy">
+      <configuration type="runtime">
+        <property name="cargo.hostname" value="localhost"/>
+        <property name="cargo.servlet.port" value="8080"/>
+        <property name="cargo.remote.username" value="manager"/>
+        <property name="cargo.remote.password" value="manager"/>
+        <deployable type="war" file="${mywarfile}">
+          <property name="context" value="${dist.name}"/>
+        </deployable>
+      </configuration>
+    </cargo>
+  </target>
+  
+  <target name="cargoundeploy" description="tomcat">
+    <echo message="Starting Cargo..."/>
+    <echo message="Using tomcat.home = ${TOMCAT_HOME} "/>
+    <echo message="Using war = ${mywarfile} "/>
+      
+    <cargo containerId="tomcat7x"  type="remote"
+        action="undeploy">
+      <configuration type="runtime">
+        <property name="cargo.hostname" value="localhost"/>
+        <property name="cargo.servlet.port" value="8080"/>
+        <property name="cargo.remote.username" value="manager"/>
+        <property name="cargo.remote.password" value="manager"/>
+        <deployable type="war" file="${mywarfile}">
+          <property name="context" value="${dist.name}"/>
+        </deployable>
+      </configuration>
+    </cargo>
+  </target>
+  <!--
+  <target name="cargostart">
+    <delete dir="${tomcatconfig.dir}" />
+    <mkdir dir="${tomcatlog.dir}"/>
+    <mkdir dir="${tomcatconfig.dir}"/>
+    <echo message="Starting Cargo..."/>
+    <echo message="Using tomcat.home = ${TOMCAT_HOME} "/>
+    <echo message="Using war = ${mywarfile} "/>
+      
+    <cargo containerId="tomcat7x" home="${TOMCAT_HOME}" 
+        output="${tomcatlog.dir}/output.log" 
+        log="${tomcatlog.dir}/cargo.log" 
+        action="start">
+      <configuration home="${tomcatconfig.dir}">
+        <property name="cargo.servlet.port" value="8080"/>
+        <property name="cargo.logging" value="high"/>
+        <deployable type="war" file="${mywarfile}"/>
+      </configuration>
+    </cargo>
+  </target>
+  -->
+</project>

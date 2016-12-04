@@ -1,0 +1,1 @@
+Se copiaza in acest catalog fisierul gson-*.jar

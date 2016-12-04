@@ -1,0 +1,15 @@
+<project>
+  <path id="myclasspath">
+     <pathelement path="server/build/classes/main"/>
+     <pathelement path="clientfx/build/classes/main"/>
+     <pathelement path="clientswing/build/classes/main"/>
+  </path>
+  
+  <target name="starter">
+    <parallel>
+      <java classname="server.AppServer" classpathref="myclasspath" fork="true"/>
+      <java classname="client.ClientFXCmmdc" classpathref="myclasspath" fork="true"/>
+      <java classname="client.VisualCmmdcClient" classpathref="myclasspath" fork="true"/>
+    </parallel>  
+  </target>
+</project>

@@ -1,0 +1,24 @@
+<project name="agendae" basedir="." default="generate.ear">
+  <property name="dist.name" value="${ant.project.name}-ear" />
+  <property name="dist.dir" value="dist" />
+  <property name="build.dir" value="build"/>
+  
+  <target name="generate">
+		<ant dir="${ant.project.name}-ejb" target="generate.jar"/>
+		<ant dir="${ant.project.name}-web" target="generate.war"/>
+	</target> 
+  
+  <target name="prepare">
+     <delete dir="${build.dir}"/>
+     <delete dir="${dist.dir}"/>
+     <mkdir dir="${build.dir}"/>
+     <copy todir="${build.dir}" file="${ant.project.name}-ejb/dist/${ant.project.name}-ejb.jar"/>
+     <copy todir="${build.dir}" file="${ant.project.name}-web/dist/${ant.project.name}-web.war"/>
+     <mkdir dir="${build.dir}/META-INF"/>
+     <copy todir="${build.dir}/META-INF" file="META-INF/application.xml"/>
+  </target>
+  
+  <target name="generate.ear" depends="generate,prepare">
+     <jar destfile="${dist.dir}/${dist.name}.ear" basedir="${build.dir}" />
+  </target>
+</project>

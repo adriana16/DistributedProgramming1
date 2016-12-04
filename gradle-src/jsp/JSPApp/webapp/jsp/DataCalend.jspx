@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<html xmlns:jsp="http://java.sun.com/JSP/Page">
+<body>
+  <jsp:scriptlet>
+    java.util.Date d=new java.util.Date();
+  </jsp:scriptlet>
+  <jsp:expression> d </jsp:expression>
+</body>
+</html>

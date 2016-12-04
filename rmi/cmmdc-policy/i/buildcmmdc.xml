@@ -1,0 +1,40 @@
+<project name="Interface" default="Install" basedir=".">
+    <description>
+        Interface actions
+    </description>
+  <!-- set global properties for this build -->
+  
+  <property name="package" value="cmmdc"/>
+  
+  <target name="Install">
+    <!-- Create the build directory structure used by compile -->
+    <delete dir="src"/>
+    <mkdir dir="src"/>
+  <delete dir="public"/>
+    <mkdir dir="public"/>
+    <delete dir="public/classes"/>
+    <mkdir dir="public/classes"/>
+  </target>
+
+  <target name="Init"> 
+    <!-- Create the time stamp -->
+    <tstamp/>
+  <mkdir dir="src/${package}"/>
+    <mkdir dir="public/classes/${package}"/>
+  </target>
+
+  <target name="Compile" depends="Init" 
+        description="compile the source " >
+    <javac srcdir="src"
+         includes="${package}/**" 
+         destdir="public/classes"
+         includeantruntime="false"/>
+  <jar basedir="public/classes" destfile="public/classes/${package}/${package}.jar" includes="${package}/*.class" />
+  </target>
+
+</project>
+
+
+
+
+

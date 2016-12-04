@@ -1,0 +1,1 @@
+set PATH=d:\mq\bin;%PATH%

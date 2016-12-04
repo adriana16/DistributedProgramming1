@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="server" default="run" basedir=".">
+
+  <property name="activemq.home" location="d:/JavaApp/apache-activemq-5.4.0" /> 
+  <property name="class.name" value="EmbeddedBroker" />
+  
+  <path id="activemq.classpath">
+    <pathelement path="." />
+    <pathelement path="${activemq.home}/example/conf" />
+    <fileset dir="${activemq.home}/lib">
+      <include name="**/*.jar" />
+    </fileset>
+  </path>
+
+
+  <target name="compile">
+    <javac srcdir="${basedir}" destdir="${basedir}">
+      <classpath refid="activemq.classpath" includeantruntime="false" />
+    </javac>
+  </target>
+
+ 
+  <target name="run" depends="compile" >
+    <java classname="${class.name}" fork="yes" maxmemory="100M">
+      <classpath refid="activemq.classpath" />
+      <!--
+      <jvmarg value="-server" />
+      <sysproperty key="activemq.home" value="${activemq.home}"/>
+      -->
+    </java>  
+  </target>
+
+</project>

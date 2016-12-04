@@ -1,0 +1,46 @@
+<project name="CDI-Weld" default="Run" basedir=".">
+  <property name="WELD_HOME" location="e:/JavaApp/weld-2.4.1.Final"/>
+  <property name="build" location="build"/>
+  <property name="src" location="src" />
+  <property environment="env"/>
+
+  <path id="myclasspath">
+    <fileset dir="${WELD_HOME}/artifacts/cdi">
+       <include name="*.jar"/>
+    </fileset> 
+    <fileset dir="${WELD_HOME}/artifacts/weld">
+       <include name="*.jar"/>
+    </fileset> 
+    <pathelement path="${build}"/>
+    <!-- <pathelement path="${basedir}"/>-->
+  </path> 
+  
+  <target name="init">
+    <!-- Create the time stamp -->
+    <tstamp/>
+    <!-- Create the build directory structure used by compile -->
+    <delete dir="${build}"/>
+    <mkdir dir="${build}"/>
+  </target>
+
+  <target name="Compile" depends="init" >
+    <javac srcdir="${src}" destdir="${build}" includeantruntime="false"
+    classpathref="myclasspath"/>
+  </target>
+
+  <target name="Run" depends="Compile"> 
+    
+    <mkdir dir="${build}/META-INF"/>
+    <copy todir="${build}/META-INF">
+       <fileset dir="META-INF"/>
+    </copy>
+    
+    <java classname="Client" classpathref="myclasspath" fork="true"/>
+  </target>
+
+</project>
+
+
+
+
+

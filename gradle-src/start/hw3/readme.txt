@@ -1,0 +1,1 @@
+gradle clean assemble run -Dexec.args="ABC"

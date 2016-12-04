@@ -1,0 +1,39 @@
+<project name="TestDisruptor" default="Compile" basedir=".">
+  <!-- set global properties for this build -->
+  <property name="build.dir" location="build"/>
+  <property name="src" location="src" />
+  <property name="number" value="8192"/>
+  
+  <path id="myclasspath">
+    <fileset dir="lib">
+       <include name="*.jar"/>
+    </fileset>
+    <pathelement path="${build.dir}" /> 
+  </path>  
+  
+  <target name="init">
+    <!-- Create the time stamp -->
+    <tstamp/>
+    <!-- Create the build directory structure used by compile -->
+    <delete dir="${build.dir}"/>
+    <mkdir dir="${build.dir}"/>
+  </target>
+
+  <target name="Compile" depends="init" description="compile the source " >
+    <javac srcdir="${src}" destdir="${build.dir}" 
+      includeantruntime="false" classpathref="myclasspath"/>
+  </target>
+
+  <target name="Disruptor"> 
+    <java classname="Server" classpathref="myclasspath" fork="true"/>
+  </target>
+ 
+  <target name="Client"> 
+    <java classname="CmmdcClient" classpathref="myclasspath" fork="true"/>
+  </target>
+</project>
+
+
+
+
+

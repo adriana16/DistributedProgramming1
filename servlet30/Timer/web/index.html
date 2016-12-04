@@ -1,0 +1,29 @@
+<!doctype html>
+
+<body>
+  <center>
+  <h1> Timer </h1>
+  <form method="post"
+        action="/timer/timer"> 
+    <table>
+       <tr>
+         <td><label>Durata (secunde)</label></td>
+         <td>
+           <input type="number" name="seconds" size="5" >
+         </td> 
+         <td>       
+           <input type="submit" value="Start timer" name="start"/>
+         </td>
+         <td>       
+           <input type="submit" value="Current state" name="state"/>
+         </td>
+         <td>       
+           <input type="submit" value="Stop timer" name="stop"/>
+         </td>
+       </tr>
+    </table>       
+   
+  </form>
+  </center>
+</body>
+</html>

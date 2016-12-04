@@ -1,0 +1,53 @@
+<project basedir="." default="generate.war"
+  xmlns:ivy="antlib:org.apache.ivy.ant">
+  <property name="fileupload.version" value="1.3.1"/>
+  <property name="io.version" value="2.4"/>
+  <property name="dist.name" value="upload" />
+  <property name="dist.dir" value="dist" />
+  <property name="report.dir" value="ivy-reports"/>
+
+  <path id="myclasspath">
+    <fileset dir="lib">
+       <include name="*.jar"/>
+    </fileset>
+  </path> 
+   
+  <target name="init">
+    <delete dir="web/WEB-INF/classes"/>  
+    <delete dir="${dist.dir}"/>
+    <mkdir dir="web/WEB-INF/classes"/>
+    <mkdir dir="${dist.dir}" />
+  </target>
+  
+  <!-- ================================= 
+          target: resolve              
+         ================================= -->
+  <target name="resolve" depends="init"
+     description="--> retreive dependencies with ivy">
+      <ivy:retrieve/>
+  </target>    
+  
+  <!-- ================================= 
+        target: report              
+       ================================= -->
+  <target name="report" depends="resolve" 
+      description="--> generates a report of dependencies">
+      <ivy:report todir="${report.dir}"/>
+  </target>
+
+
+  <target name="compile" depends="report">
+    <javac classpathref="myclasspath"
+           srcdir="src" 
+           destdir="web/WEB-INF/classes" 
+           includeantruntime="false"/>             
+  </target>
+  
+  <target name="generate.war" depends="compile">
+    <copy todir="web/WEB-INF/lib" 
+       file="lib/commons-fileupload-${fileupload.version}.jar"/>
+    <copy todir="web/WEB-INF/lib" 
+       file="lib/commons-io-${io.version}.jar"/>
+    <jar destfile="${dist.dir}/${dist.name}.war" basedir="web" />
+  </target>
+</project>

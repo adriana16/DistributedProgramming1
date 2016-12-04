@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<project name="streaming" default="compile" basedir=".">
+	
+  <target name="compile">
+    <ant dir="streamingaudio" target="Compile"/>
+    <ant dir="streamingimage" target="Compile"/>
+    <ant dir="streamingtext" target="Compile"/>
+    <ant dir="streamingvideo" target="Compile"/>
+  </target>
+
+  <target name="audio-Server">
+    <ant dir="streamingaudio" target="audio-Server"/>
+  </target>
+  
+  <target name="audio-Client">
+    <ant dir="streamingaudio" target="audio-Client"/>
+  </target>
+  
+  <target name="image-Server">
+    <ant dir="streamingimage" target="image-Server"/>
+  </target>
+  
+  <target name="image-Client">
+    <ant dir="streamingimage" target="image-Client"/>
+  </target>
+  
+  <target name="text-Server">
+    <ant dir="streamingtext" target="text-Server"/>
+  </target>
+  
+  <target name="text-Client">
+    <ant dir="streamingtext" target="text-Client"/>
+  </target>
+  
+  <target name="video-Server">
+    <ant dir="streamingvideo" target="video-Server"/>
+  </target>
+  
+  <target name="video-ClientJMF">
+    <ant dir="streamingvideo" target="video-ClientJMF"/>
+  </target>
+  
+  <target name="video-ClientWMP">
+    <ant dir="streamingvideo" target="video-ClientWMP"/>
+  </target>
+</project>

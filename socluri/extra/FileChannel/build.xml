@@ -1,0 +1,34 @@
+<project name="file_transfer" default="Server" basedir=".">
+ 
+  <property name="build" location="work"/>
+  <property name="src.dir" location="src" />
+  <property name="host" value="localhost" />
+  <property name="port" value="7999" />
+
+  <target name="init">
+    <!-- Create the time stamp -->
+    <tstamp/>
+    <!-- Create the build directory structure used by compile -->
+    <delete dir="${build}"/>
+    <mkdir dir="${build}"/>
+  </target>
+
+  <target name="Compile" depends="init">
+    <javac srcdir="${src.dir}" destdir="${build}" includeantruntime="false"/>
+  </target>
+
+  <target name="Server" depends="Compile">
+    <java classname="Server" classpath="${build}" fork="true"/>
+  </target>
+
+  <target name="Client">
+    <java classname="Client" classpath="${build}" fork="true">
+      <arg line="${host} ${port}" />
+    </java>
+  </target>
+</project>
+
+
+
+
+

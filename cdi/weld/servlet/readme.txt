@@ -1,0 +1,1 @@
+In catalogul web/WEB-INF/lib se copiaza fisierul weld-servlet.jar

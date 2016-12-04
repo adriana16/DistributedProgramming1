@@ -1,0 +1,41 @@
+<!doctype html>
+  <body bgcolor="#ccbbcc">
+    <center>
+    <h1> JMS Sender Servlet </h1>
+    <p>
+    Introduce&#355;i datele
+    <p>
+    <form method="get"
+      action="/servletjms/sender"> 
+      <table border="2">
+        <tr>
+          <td> Primul numar </td>
+          <td> <input type="number" name="m" value="1" size="5"
+             required min="1"> </td>
+        </tr>
+        <tr>
+          <td> Al doilea numar </td>
+          <td> <input type="number" name="n" value="1" size="5"
+             required min="1"> </td>
+        </tr>
+        <tr>
+          <td> Topic </td>
+          <td> <input type="text" name="topic"  size="10" required> </td>
+        </tr>  
+        <tr>
+          <td> ID Client </td>
+          <td> <input type="text" name="clientID"  size="10" required> </td>
+        </tr>  
+        <tr>
+          <td> Nume Client </td>
+          <td> <input type="text" name="clientName"  size="10" required> </td>
+        </tr>  
+        <tr>
+          <td> <input type="submit" value="Expediaza"> </td>
+          <td></td>
+        <tr>  
+      </table>
+    </form>
+    </center>
+  </body>
+</html>

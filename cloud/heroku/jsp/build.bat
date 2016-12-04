@@ -1,0 +1,1 @@
+mvn archetype:create -DgroupId=jsp.heroku -DartifactId=cmmdcbean -DarchetypeArtifactId=maven-archetype-webapp 

@@ -1,0 +1,1 @@
+Pe un calculator 64 biti se dezarhiveaza openmq4_5-binary-WINNT.zip

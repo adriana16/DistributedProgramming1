@@ -1,0 +1,1 @@
+Se copiaza fisierul IVY_HOME/ivy-*.jar in ANT_HOME/lib

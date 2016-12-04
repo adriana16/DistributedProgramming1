@@ -1,0 +1,5 @@
+module CmmdcApp{
+   interface Cmmdc{
+      long long cmmdc(in long long a,in long long b);
+   };
+};

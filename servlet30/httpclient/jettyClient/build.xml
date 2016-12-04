@@ -1,0 +1,32 @@
+<project name="client" default="Run" basedir=".">
+  <property name="build.dir" location="build"/>
+  <property name="src" location="src" />
+
+  <path id="myclasspath">
+    <fileset dir="e:/JavaApp/jetty-distribution-9.3.12.v20160915/lib">
+       <include name="*.jar"/>
+    </fileset> 
+    <pathelement path="${build.dir}" /> 
+  </path>  
+  
+  <target name="init">
+    <delete dir="${build.dir}"/>
+    <mkdir dir="${build.dir}"/>
+  </target>
+
+  <target name="Compile" depends="init" description="compile the source " >
+    <javac srcdir="${src}" destdir="${build.dir}" 
+      includeantruntime="false" classpathref="myclasspath"/>
+  </target>
+
+  <target name="Run" depends="Compile"> 
+    <java classname="ClientCmmdcServlet" classpathref="myclasspath" fork="true"/>
+    <java classname="AsyncClientCmmdcServlet" classpathref="myclasspath" fork="true"/>
+  </target>
+ 
+</project>
+
+
+
+
+

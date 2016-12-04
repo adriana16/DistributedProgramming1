@@ -1,0 +1,54 @@
+<project basedir="." default="generate.war">
+
+  <property name="TOMCAT_HOME" value="d:/JavaApp/apache-tomcat-7.0.42"/> 
+  <property name="dist.name" value="apphelloP" />
+  <property name="dist.dir" value="dist" />
+  <property name="mywarfile" value="dist/${dist.name}.war"/>
+   
+  <property name="username" value="manager"/>
+  <property name="password" value="manager"/>
+  <property name="path" value="/apphelloP"/>
+  <property name="url" value="http://localhost:8080/manager/text"/>
+  
+  
+  <path id="myclasspath">
+    <fileset dir="web/WEB-INF/lib">
+       <include name="*.jar"/>
+    </fileset>
+    <fileset dir="lib">
+       <include name="*.jar"/>
+    </fileset>
+  </path> 
+  
+  <taskdef resource="org/apache/catalina/ant/catalina.tasks"
+           classpathref="myclasspath"/>
+  
+  <target name="init">
+    <delete dir="${dist.dir}"/>
+    <delete dir="web/WEB-INF/classes"/>
+    <mkdir dir="web/WEB-INF/classes"/>
+    <mkdir dir="${dist.dir}" />
+  </target>
+  
+  <target name="compile" depends="init">
+    <javac classpathref="myclasspath"
+           includeantruntime="false"
+           srcdir="${basedir}/src" 
+           destdir="web/WEB-INF/classes" />             
+  </target>
+  
+  <target name="generate.war" depends="compile">
+    <jar destfile="${dist.dir}/${dist.name}.war" basedir="web" />
+  </target>
+  
+  <target name="deploy" description="Deploy web application">
+    <deploy url="${url}" username="${username}" password="${password}"
+            path="${path}" war="${mywarfile}" update="true" />
+  </target>
+
+  <target name="undeploy" description="Undeploy web application">
+    <undeploy url="${url}" username="${username}" password="${password}"
+              path="${path}"/>
+  </target>
+  
+</project>

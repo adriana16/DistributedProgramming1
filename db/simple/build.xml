@@ -1,0 +1,41 @@
+<project name="DBUtils" default="run" basedir=".">
+ 
+  <!-- set global properties for this build.dir -->
+  <property name="main.class" value="AgendaE"/>
+  <property name="build.dir" location="build"/>
+  <property name="src.dir" location="src" />
+  <property name="dbms" value="mysql"/>
+  <property name="user" value=""/>
+  <property name="password" value=""/>
+  
+  <path id="myclasspath">
+    <fileset dir="lib">
+       <include name="*.jar"/>
+    </fileset> 
+    <pathelement path="${build.dir}"/>
+  </path>  
+  
+  <target name="init">
+    <delete dir="${build.dir}"/>
+    <delete dir="work"/>
+    <mkdir dir="${build.dir}"/>
+  </target>
+  
+  <target name="compile" depends="init" >
+    <javac srcdir="${src.dir}" destdir="${build.dir}" 
+       classpathref="myclasspath"  includeantruntime="false" />
+    <!--  <compilerarg value="-Xlint"/> -->
+   
+  </target>
+  
+  <target name="run" depends="compile">       
+    <java classname="${main.class}" classpathref="myclasspath" fork="true">
+      <arg line="${dbms} ${user} ${password}"/>
+    </java>  
+  </target>
+</project>
+
+
+
+
+

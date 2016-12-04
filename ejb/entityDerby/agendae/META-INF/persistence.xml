@@ -1,0 +1,12 @@
+<persistence xmlns="http://java.sun.com/xml/ns/persistence" version="1.0">
+  <persistence-unit name="agendae_persistence_ctx">
+    <jta-data-source>jdbc/Adrese</jta-data-source>
+    <properties>
+      <!--Use the java2db feature -->
+      <property name="toplink.ddl-generation" value="none"/>
+      <!-- Generate the sql specific to Derby database -->
+      <property name="toplink.jdbc.driver"
+         value="org.apache.derby.jdbc.ClientDriver"/>
+    </properties>
+  </persistence-unit>
+</persistence>

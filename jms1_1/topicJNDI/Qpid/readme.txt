@@ -1,0 +1,1 @@
+Catalogul lib se completeaza cu slf4j-nop-*.jar

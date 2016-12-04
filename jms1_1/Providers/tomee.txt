@@ -1,0 +1,9 @@
+In fisierul apache-tomee-plume-*\conf\tomee.xml se introduce
+  <Resource id="MyJmsResourceAdapter" type="ActiveMQResourceAdapter">
+      BrokerXmlConfig =  broker:(tcp://someHostName:61616)
+      ServerUrl       =  vm://localhost
+  </Resource>
+
+  <Resource id="MyJmsConnectionFactory" type="javax.jms.ConnectionFactory">
+      ResourceAdapter = MyJmsResourceAdapter
+  </Resource>

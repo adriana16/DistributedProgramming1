@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<project name="queue" default="package" basedir=".">
+	<target name="package">
+		<ant dir="publisher" target="tojar"/>
+		<ant dir="subscriber" target="tojar"/>
+	</target>
+</project>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jnlp codebase="http://localhost:8080/agendaemysql/app">
+  <information>
+     <title>AgendaEMail</title>
+     <vendor> xyz </vendor>
+     <description>Derby DB</description>
+  </information>
+  <security>
+    <all-permissions />
+  </security>
+  <resources>
+    <j2se version="1.2+"/>
+    <jar href="agendae.jar"/>
+    <jar href="lib/mysql-connector-java-5.1.18-bin.jar"/>
+  </resources>
+  <application-desc main-class="agendae.GuiAgenda"/>
+</jnlp>

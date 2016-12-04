@@ -1,0 +1,15 @@
+apply plugin: 'application'
+
+jar {
+    manifest {
+        attributes 'Main-class': 'HelloWorld'
+    }
+}
+
+mainClassName='HelloWorld'
+
+run{
+  if(project.hasProperty('args')){
+    args project.args.split('\\s')
+  }
+}

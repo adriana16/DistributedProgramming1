@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <title> Servlet-ul Download </title>
+  </head>
+  <body>
+    <center>
+    <h1> Pagina de apelare a servletului DownloadServlet </h1>
+    <form method="post"
+          action="download"> 
+      <p>Alegeti fisierul:
+      <select name="file">
+         <option value="clock.avi">clock.avi
+         <option value="xml-pic.jpg">xml-pic.jpg
+         <option value="TomJones.mp3">TomJones.mp3
+         <option value="capitol.txt">capitol.txt
+      </select>
+      <p>
+      <input type="submit" value="Descarca">
+    </form>
+    <audio src="resources/TomJones.mp3" controls="controls">
+    </audio>
+    </center>
+  </body>
+</html>

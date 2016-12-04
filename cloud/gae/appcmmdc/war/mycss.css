@@ -1,0 +1,13 @@
+body{background-color:#bbccbb}
+h1{text-align:center}
+/*
+p{font-size:medium;font-weight:bold}
+a{text-decoration:none}
+a.index{font-size:medium;font-weight:bold}
+td.index{font-size:x-large;position:center}
+*/
+ul{font-size:medium;font-weight:bold}
+a:link{color:blue}
+a:active{color:green}
+a:visited{color:red}
+table{border:1px solid black}

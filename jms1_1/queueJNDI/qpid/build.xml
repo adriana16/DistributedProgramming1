@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="JMS" default="run" basedir=".">
+  <property name="class.name" value="MsgHelloT"/>
+  <!--<property name="qpid.home" location="e:\JavaApp\qpid-0.32\apache-qpid-jms-0.7.0-SNAPSHOT" />-->
+  <property name="qpid.home" location="e:\JavaApp\qpid-0.32\qpid-client\0.32" /> 
+  <property name="build.dir" location="build"/>
+   
+  <path id="myclasspath">
+    <pathelement path="${build.dir}" />
+    <pathelement path="log4j.xml" />
+    <fileset dir="${qpid.home}/lib">
+       <include name="*.jar"/>
+    </fileset>
+    <!--
+    <fileset dir="${qpid.home}/lib/optional">
+       <include name="*.jar"/>
+    </fileset>
+    -->
+    <fileset dir="lib">
+       <include name="*.jar"/>
+    </fileset>
+  </path>
+
+  <target name="init">
+    <delete dir="${build.dir}"/>
+    <mkdir dir="${build.dir}"/>
+  </target>
+  
+  <target name="compile" depends="init">
+    <javac srcdir="src" destdir="${build.dir}"
+      includeantruntime="false">
+      <classpath refid="myclasspath" />
+    </javac>
+  </target>
+ 
+  <target name="run" depends="compile" >
+     <copy todir="${build.dir}" file="jndi.properties"/>
+     <java classname="${class.name}" fork="yes" maxmemory="100M">
+       <classpath refid="myclasspath" /> 
+     </java>  
+  </target>
+
+</project>

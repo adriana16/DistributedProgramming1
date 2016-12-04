@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="JMS" default="run" basedir=".">
+  <property name="version" value="5.12.1"/>
+  <property name="class.name" value="MsgPS"/>
+  <property name="activemq.home" location="e:\JavaApp\apache-activemq-${version}" /> 
+   
+  <path id="myclasspath">
+    <pathelement path="." />
+    <pathelement path="${activemq.home}/activemq-all-${version}.jar"/>
+  </path>
+
+  <target name="compile">
+    <javac srcdir="${basedir}" destdir="${basedir}"
+      includeantruntime="false">
+      <classpath refid="myclasspath" />
+    </javac>
+  </target>
+ 
+  <target name="run" depends="compile" >
+     <java classname="${class.name}" fork="yes" maxmemory="100M">
+       <classpath refid="myclasspath" /> 
+     </java>  
+  </target>
+
+</project>

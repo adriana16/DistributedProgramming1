@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project default="run" basedir=".">  
+  <property name="mq.home" value="e:/JavaApp/MessageQueue5.1.1/mq"/>  
+  <property name="resources.home" location="resources"/>
+  
+  <path id="classpath" >
+    <pathelement path="build" />    
+    <fileset dir="${mq.home}/lib">
+      <include name="*.jar"/>
+    </fileset>
+  </path>
+  
+  <target name="init">
+     <delete dir="build"/>
+     <mkdir dir="build"/>
+  </target>
+
+  <target name="compile" depends="init"> 
+    <javac srcdir="src" classpathref="classpath" 
+       destdir="build" debug="yes" 
+       includeantruntime="false"/>
+  </target>
+
+  <target name="server">
+    <exec executable="${mq.home}/bin/imqbrokerd.exe" dir="${mq.home}/bin"/>
+  </target>  
+    
+  <target name="run" depends="compile">
+    <java classname="MsgAttach" classpathref="classpath" 
+      fork="yes" failonerror="yes">
+      <sysproperty key="file_location"
+         value="${resources.home}"/>    
+      <sysproperty key="image_location"
+         value="localhost/${resources.home}"/>    
+    </java>
+  </target>
+  
+</project>
+

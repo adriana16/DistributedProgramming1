@@ -1,0 +1,34 @@
+<!doctype html>
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="mycss.css">
+</head>  
+<body>
+  <center>
+  <h1> Pagina de apelare CmmdcServlet </h1>
+  <form method="get"
+      action="/myservlet/verif">  
+      <table> 
+        <tr>
+          <td><label> Primul numar </label></td>
+          <td>    
+             <input type="text" name="m" size="5">
+          </td>
+        </tr>  
+        <tr>
+          <td><label> Al doilea numar </label></td>
+          <td>
+             <input type="text" name="n" size="5">
+          </td>
+        </tr>
+        <tr>
+          <td>          
+             <p><input type="submit" value="Calculeaza">
+          </td>
+        </tr>
+      </table>  
+  </form>
+  <input type="hidden" name="tip" value="text/html" >
+  <center>
+</body>
+</html>

@@ -1,0 +1,6 @@
+module SumApp{
+   typedef sequence<double,5> sir; 
+   interface Sum{
+      double compute(in sir s);
+   };
+};

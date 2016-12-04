@@ -1,0 +1,36 @@
+<project name="iiop" basedir="." default="generate.jar">
+  <property environment="env"/>
+  <property name="dist.iiop.name" value="agendae-${ant.project.name}" />
+  <property name="dist.dir" value="dist" />
+  <property name="build.dir" value="build"/>
+
+  <path id="myclasspath">
+    <fileset dir="${env.GLASSFISH_HOME}/glassfish/modules">
+       <include name="*.jar"/>
+    </fileset>
+  </path> 
+   
+  <target name="init">
+    <delete dir="${dist.dir}"/>
+    <delete dir="${build.dir}"/>
+    <mkdir dir="${build.dir}"/>
+    <mkdir dir="${dist.dir}"/>
+  </target>
+  
+  <target name="compile" depends="init">
+    <javac classpathref="myclasspath"
+           includeantruntime="false"
+           srcdir="src" 
+           destdir="${build.dir}" />             
+  </target>
+  
+  <target name="generate.jar" depends="compile">
+    <jar destfile="${dist.dir}/${dist.iiop.name}.jar" basedir="${build.dir}">
+       <manifest>
+          <attribute name="Main-Class" value="agendae.client.AgendaeClient"/>
+          <attribute name="Class-Path" value="agendae-iiop.jar"/>
+       </manifest>
+    </jar>
+  </target>
+  
+</project>

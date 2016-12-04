@@ -1,0 +1,3 @@
+register -server PersistentServer -applicationName PersistentCmmdcServer -classpath e:\mk\distr\corba\persistent\cmmdc\s\
+
+rem Linux register -server PersistentServer -applicationName PersistentCmmdcServer -classpath /home/mk/DISTR1/corba/persistent/s/

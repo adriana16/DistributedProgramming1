@@ -1,0 +1,59 @@
+<html>
+  <head>
+    <script language="JavaScript" >
+    <!--
+    function checkIt(){ 
+      var sm=document.cmmdc.m.value; 
+      var sn=document.cmmdc.n.value;       
+      if(sm==""){ 
+        alert("Lipseste primul numar !");
+        return false; 
+      } 
+      if(sn==""){ 
+        alert("Lipseste al doilea numar !");
+        return false; 
+      } 
+      if(! IsNumeric(sm)){
+         alert("Primul numar este gresit introdus !");
+         return false;
+      }
+      if(! IsNumeric(sn)){
+         alert("Al doilea numar este gresit introdus !");
+         return false;
+      }  
+      return true;      
+    }
+    
+   function IsNumeric(sText){
+     // Jeff Anderson
+     // A javascript validation function to check whether the details entered
+     // by a user are numeric (2002)
+     var ValidChars = "0123456789.";
+     var IsNumber=true;
+     var Char;
+     for (i = 0; i < sText.length && IsNumber == true; i++){ 
+        Char = sText.charAt(i); 
+        if (ValidChars.indexOf(Char) == -1){
+           IsNumber = false;
+        }
+     }
+     return IsNumber;
+   }
+    //-->
+    </script>
+    <title>Cmmdc Servlet</title>
+  </head>
+  <body bgcolor="#ccbbcc">
+    <center>
+    <h1> Cmmdc Servlet </h1>
+    <form method="get"
+        action="http://localhost:9080/cmmdc"
+        name="cmmdc" onSubmit="return checkIt()" >  
+        <p>Primul numar este <input type="text" name="m" size=5>
+        <p>Al doilea numar este <input type="text" name="n" size=5>
+        <p><input type="submit" value="Calculeaza">
+        <input type="hidden" name="tip" value="text/html" >
+    </form>
+    </center>
+  </body>
+</html>

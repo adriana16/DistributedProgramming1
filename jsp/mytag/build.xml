@@ -1,0 +1,28 @@
+<project basedir="." default="generate.war">
+
+  <property name="TOMCAT_HOME" value="e:/JavaApp/apache-tomcat-8.0.15"/> 
+  <property name="dist.name" value="mytag" />
+  <property name="dist.dir" value="dist" />
+
+  <path id="myclasspath">
+    <pathelement path="${TOMCAT_HOME}/lib/jsp-api.jar" /> 
+  </path> 
+   
+  <target name="init">
+    <delete dir="${dist.dir}"/>
+    <delete dir="web/WEB-INF/classes"/>
+    <mkdir dir="${dist.dir}"/>
+    <mkdir dir="web/WEB-INF/classes" />
+  </target>
+  
+  <target name="compile" depends="init">
+    <javac classpathref="myclasspath"
+           srcdir="src" 
+           destdir="web/WEB-INF/classes"
+           includeantruntime="false"/>             
+  </target>
+  
+  <target name="generate.war" depends="compile">
+    <jar destfile="${dist.dir}/${dist.name}.war" basedir="web" />
+  </target>
+</project>

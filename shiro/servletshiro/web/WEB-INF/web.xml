@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee" 
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <listener>
+      <listener-class>org.apache.shiro.web.env.EnvironmentLoaderListener</listener-class>
+  </listener>
+  
+  <servlet>
+    <servlet-name>hello</servlet-name>
+    <servlet-class>hello.HelloServlet</servlet-class>
+  </servlet>
+
+  <servlet>
+    <servlet-name>cmmdc</servlet-name>
+    <servlet-class>cmmdc.CmmdcServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>cmmdc</servlet-name>
+    <url-pattern>/accesAutorizat/cmmdc</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+    <servlet-name>hello</servlet-name>
+    <url-pattern>/accesAutorizat/hello</url-pattern>
+  </servlet-mapping>
+
+  <filter>
+      <filter-name>ShiroFilter</filter-name>
+      <filter-class>org.apache.shiro.web.servlet.ShiroFilter</filter-class>
+  </filter>
+
+  <filter-mapping>
+      <filter-name>ShiroFilter</filter-name>
+      <url-pattern>/*</url-pattern>
+  </filter-mapping>
+  <!--
+  <welcome-file-list>
+      <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+  -->
+</web-app>

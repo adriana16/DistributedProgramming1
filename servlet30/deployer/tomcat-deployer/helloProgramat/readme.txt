@@ -1,0 +1,1 @@
+Se copiaza in lib fisierele jar din apache-tomcat-deployer.

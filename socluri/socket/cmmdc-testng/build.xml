@@ -1,0 +1,91 @@
+﻿<project name="Socket" default="Run" basedir=".">
+ 
+  <!-- set global properties for this build.dir -->
+  <property name="main.class" value="server.AppServer"/>
+  <property name="build.dir" location="build"/>
+  <property name="src.dir" location="src" />
+  <property name="host" value="localhost"/>
+  <property name="port" value="7999"/>
+  <property environment="env"/> 
+
+  <path id="myclasspath">
+    <fileset dir="lib">
+       <include name="*.jar"/>
+    </fileset> 
+    <pathelement path="${build.dir}/main"/>
+    <pathelement path="${build.dir}/test"/>
+    <pathelement path="${env.JAVA_HOME}/jre/lib/ext/jfxrt.jar" /> 
+  </path>  
+  
+  <taskdef name="testng" classpathref="myclasspath"
+          classname="org.testng.TestNGAntTask" />
+          
+  <target name="init">
+    <delete dir="test-output"/>
+    <delete dir="${build.dir}"/>
+    <mkdir dir="${build.dir}"/>
+    <mkdir dir="${build.dir}/main" />
+  </target>
+
+  <target name="init.test">
+    <delete dir="${build.dir}/test" />
+    <mkdir dir="${build.dir}/test" />
+  </target>
+  
+  <target name="Compile" depends="init" description="compile the source " >
+    <javac srcdir="${src.dir}/main" destdir="${build.dir}/main" 
+       classpathref="myclasspath"  includeantruntime="false"/>
+  </target>
+
+  <target name="Compile.test" depends="init.test" description="compile the source " >
+    <javac srcdir="${src.dir}/test" destdir="${build.dir}/test" 
+       classpathref="myclasspath"  includeantruntime="false"/>   
+  </target>
+  
+  <target name="Run" depends="Compile"> 
+    <java classname="${main.class}" classpathref="myclasspath" fork="true"/>
+  </target>
+
+  <target name="Client"> 
+    <java classname="client.CmmdcClient" classpathref="myclasspath" fork="true">
+      <arg line="${host} ${port}" />
+    </java>
+  </target>
+  
+  <target name="SwingClient"> 
+    <java classname="client.VisualCmmdcClient" classpathref="myclasspath" fork="true"/>
+  </target>
+  
+  <target name="FXClient"> 
+    <java classname="client.ClientFXCmmdc" classpathref="myclasspath" fork="true"/>
+  </target>
+  
+  <target name="Test" depends="Compile.test">
+    <echo message="Aplicatia server NU trebuie sa fie activa"/>
+      <testng classpathref="myclasspath" groups="base">
+        <classfileset dir="${build.dir}/test" includes="server/impl/*.class"/>
+    </testng>
+<!--
+    <junit printsummary="yes" haltonerror="yes" haltonfailure="yes" fork="yes"> 
+      <formatter type="plain" usefile="false"/> 
+      <test name="server.impl.TestApp"/>
+      <test name="server.impl.TestMyMServer1"/>
+      <test name="server.impl.TestMyMServer2"/>
+      <classpath>
+        <pathelement path="${build.dir}/test"/> 
+        <pathelement path="${build.dir}/main"/> 
+        <pathelement path="lib/${junit_version}.jar"/> 
+      </classpath>
+    </junit>
+-->
+    <!--
+    <java classname="server.TestApp" classpathref="myclasspath" fork="true"/>     
+    <java classname="server.impl.TestMyMServer" classpathref="myclasspath" fork="true"/> 
+    -->
+  </target>  
+</project>
+
+
+
+
+

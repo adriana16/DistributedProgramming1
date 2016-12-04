@@ -1,0 +1,37 @@
+<project name="YAML" default="Run" basedir=".">
+  
+  <!-- set global properties for this build -->
+  <property name="build" location="build"/>
+  <property name="src" location="src" />
+  <property environment="env"/>
+
+  <path id="myclasspath">
+    <fileset dir="lib">
+       <include name="*.jar"/>
+    </fileset>
+    <pathelement path="${build}"/>
+  </path> 
+  
+  <target name="init">
+    <!-- Create the time stamp -->
+    <tstamp/>
+    <!-- Create the build directory structure used by compile -->
+    <delete dir="${build}"/>
+    <mkdir dir="${build}"/>
+  </target>
+
+  <target name="Compile" depends="init" description="compile the source " >
+    <javac srcdir="${src}" destdir="${build}" includeantruntime="false"
+    classpathref="myclasspath"/>
+  </target>
+
+  <target name="Run" depends="Compile"> 
+    <java classname="Generare" classpathref="myclasspath" fork="true"/>
+    <java classname="Utilizare" classpathref="myclasspath" fork="true"/>
+  </target>
+</project>
+
+
+
+
+

@@ -1,0 +1,1 @@
+Currently there exists no Tomcat 8 version of Tomcat Maven plugin.

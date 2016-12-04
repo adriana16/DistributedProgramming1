@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+   <jnlp codebase="http://localhost:8080/cmmdc/app">
+     <information>
+         <title>FX-Cmmdc</title>
+         <vendor> xyz </vendor>
+         <description>Exemplu</description>
+     </information>
+     <security>
+       <all-permissions />
+     </security>
+     <resources>
+       <j2se version="1.2+"/>
+       <jar href="cmmdc.jar"/>
+     </resources>
+     <application-desc main-class="Cmmdcfx"/>
+   </jnlp>

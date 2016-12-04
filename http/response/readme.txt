@@ -1,0 +1,1 @@
+output.txt se vizualizeaza cu npp.

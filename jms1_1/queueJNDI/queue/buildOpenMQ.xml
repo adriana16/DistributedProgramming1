@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="JMS" default="run" basedir=".">
+  <property name="class.name" value="MsgHelloT"/>
+  <property name="mq.home" location="e:\JavaApp\MessageQueue5.1.1\mq"/>
+  
+  <path id="myclasspath">
+    <pathelement path="." />
+    <fileset dir="${mq.home}/lib">
+      <include name="**/*.jar" />
+    </fileset>
+  </path>
+
+  <target name="compile">
+    <javac srcdir="${basedir}" destdir="${basedir}"
+      includeantruntime="false">
+      <classpath refid="myclasspath" />
+    </javac>
+  </target>
+
+  <target name="run" depends="compile" >
+     <java classname="${class.name}" fork="yes" maxmemory="100M">
+       <classpath refid="myclasspath" /> 
+     </java>  
+  </target>
+</project>

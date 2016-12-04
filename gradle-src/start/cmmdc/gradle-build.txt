@@ -1,0 +1,15 @@
+apply plugin: 'application'
+
+jar {
+    manifest {
+        //attributes 'Main-class': 'simple.app.cmmdc.App'
+        attributes 'Main-class': 'VisualCmmdc'
+    }
+}
+
+//mainClassName='simple.app.cmmdc.App'
+mainClassName='VisualCmmdc'
+
+//run{  
+//  args System.getProperty("exec.args").split()    
+//}

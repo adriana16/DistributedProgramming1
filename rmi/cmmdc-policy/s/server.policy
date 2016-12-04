@@ -1,0 +1,3 @@
+grant codeBase "file:/mk/distr/rmi/cmmdc/s/public/classes/" {
+    permission java.security.AllPermission;
+};

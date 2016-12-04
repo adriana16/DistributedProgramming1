@@ -1,0 +1,6 @@
+pd: |
+  !!Disciplina {nume: Programare distribuita}
+sm: |
+  !!Disciplina {nume: Soft matematic}
+an: |
+  !!Disciplina {nume: Analiza numerica}

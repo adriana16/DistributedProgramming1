@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project default="run" basedir=".">  
+  <property name="mq.home" value="e:/JavaApp/MessageQueue5.1.1/mq"/>  
+  <property name="resources.home" location="resources"/>
+ 
+  
+  <path id="classpath" >
+    <pathelement path="build/classes" />  
+    
+    <fileset dir="${mq.home}/lib">
+      <include name="*.jar"/>
+    </fileset>
+  
+    <fileset dir="lib">
+      <include name="*.jar"/>
+    </fileset>
+   
+  </path>
+  
+  <target name="init">
+     <mkdir dir="build"/>
+     <mkdir dir="build/classes"/>
+  </target>
+
+  <target name="compile" depends="init"> 
+    <javac srcdir="src" classpathref="classpath" 
+       destdir="build/classes" debug="yes" 
+       includeantruntime="false"/>
+  </target>
+
+  <target name="server">
+    <exec executable="${mq.home}/bin/imqbrokerd.exe" dir="${mq.home}/bin"/>
+  </target>  
+    
+  <target name="run" depends="compile">
+    <java classname="MsgAttach" classpathref="classpath" 
+      fork="yes" failonerror="yes">
+      <sysproperty key="file_location"
+         value="${resources.home}/capitol.txt"/>    
+      <sysproperty key="image_location"
+         value="localhost/${resources.home}/xml-pic.jpg"/>    
+      <sysproperty key="mp3_location"
+         value="localhost/${resources.home}/TomJones.mp3"/>   
+      <sysproperty key="video_location"
+         value="localhost/${resources.home}/airhorse.avi"/>       
+    </java>
+  </target>
+  
+</project>
+

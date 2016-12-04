@@ -1,0 +1,14 @@
+apply plugin: 'application'
+mainClassName='server.CmmdcImpl'
+
+run {
+    classpath = sourceSets.main.runtimeClasspath
+    //classpath.each { println it }
+    /* Can pass all the properties: */
+    //systemProperties System.getProperties()
+
+    /* Or just each by name: */
+    systemProperty "java.rmi.server.codebase", System.getProperty("java.rmi.server.codebase")
+
+    args System.getProperty("exec.args").split()
+}

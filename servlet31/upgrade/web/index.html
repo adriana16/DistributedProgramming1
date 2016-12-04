@@ -1,0 +1,32 @@
+<!doctype html>
+  </head>
+  <body bgcolor="#aaeeaa">
+    <center>
+    <h1> Pagina de apelare a servlet-ului Cmmdc </h1>
+    <form method="get" 
+          action="/upgrade/client">
+      <table> 
+        <tr>
+          <td><label> Primul num&#259;r </label></td>
+          <td>    
+             <input type="text" name="m" size="5" 
+             required pattern="[0-9]{1,}">
+          </td>
+        </tr>  
+        <tr>
+          <td><label> Al doilea num&#259;r </label></td>
+          <td>
+             <input type="text" name="n" size="5" 
+             required pattern="[0-9]{1,}">
+          </td>
+        </tr>
+        <tr>
+          <td>          
+             <p><input type="submit" value="Calculeaza">
+          </td>
+        </tr>
+      </table>  
+    </form>
+    </center>
+  </body>
+</html>

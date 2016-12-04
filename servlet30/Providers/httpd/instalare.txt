@@ -1,0 +1,9 @@
+Instalare:
+1. Dezarhivarea fisierului descarcat
+2. In conf/httpd.conf
+   Define SRVROOT "cale la Apache*"
+   
+   Ex.
+   Define SRVROOT "e:/JavaApp/Apache24"
+   
+   

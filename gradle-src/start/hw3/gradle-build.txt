@@ -1,0 +1,7 @@
+apply plugin: 'application'
+
+mainClassName='HelloWorld'
+
+run{  
+  args System.getProperty("exec.args").split()    
+}

@@ -1,0 +1,1 @@
+Catalogul lib se completeaza cu fisierele din lib-cargo.

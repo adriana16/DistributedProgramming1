@@ -1,0 +1,48 @@
+<project name="StreamingVideo" default="Compile" basedir=".">
+  
+  <!-- set global properties for this build -->
+  <property name="build.dir" location="build"/>
+ 
+  <!-- <property environment="env"/> -->
+
+  <path id="myclasspath">
+    <fileset dir="../lib">
+       <include name="*.jar"/>
+    </fileset> 
+    <pathelement path="${build.dir}"/>
+  </path> 
+  
+  <target name="init">
+    <!-- Create the time stamp -->
+    <tstamp/>
+    <!-- Create the build directory structure used by compile -->
+    <delete dir="${build.dir}"/>
+    <mkdir dir="${build.dir}"/>
+  </target>
+
+  <target name="Compile" depends="init" description="compile the source " >
+    <javac srcdir="src" destdir="${build.dir}" includeantruntime="false"
+    classpathref="myclasspath"/>
+  </target>
+
+  <target name="video-Server"> 
+    <java classname="streamingvideo.MyMServer" classpathref="myclasspath" fork="true"/>
+  </target>
+
+  <target name="video-ClientJMF">
+    <delete file="video1.avi"/>
+    <delete file="airhorse.avi"/>
+    <java classname="streamingvideo.StreamClientJMF" classpathref="myclasspath" fork="true"/>
+  </target>  
+  
+  <target name="video-ClientWMP">
+    <delete file="video1.avi"/>
+    <delete file="airhorse.avi"/>
+    <java classname="streamingvideo.StreamClientWMP" classpathref="myclasspath" fork="true"/>
+  </target>  
+</project>
+
+
+
+
+

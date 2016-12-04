@@ -1,0 +1,55 @@
+<project name="Client" default="Install" basedir=".">
+    <description>Client actions</description>
+  <!-- set global properties for this build -->
+  <property name="path" location=". . ."/>
+  
+  <property name="package" value="cmmdc0"/>
+  <property name="interface-jar" location="${path}/i/public/classes/cmmdc0" />
+  <property name="jar-file" value="cmmdc0.jar" />
+  <property name="host" value="localhost" />
+  <property name="port" value="1099" />
+  <property name="client-class" value="ClientCmmdc0" />
+ 
+
+  
+  <target name="Install">
+    <!-- Create the build directory structure used by compile -->
+    <delete dir="src"/>
+    <mkdir dir="src"/>
+    <delete dir="classes"/>
+    <mkdir dir="classes"/>
+  </target>
+
+  <target name="Init">
+    <!-- Create the time stamp -->
+    <tstamp/>
+    <mkdir dir="src/${package}"/>
+    <mkdir dir="classes/${package}"/>
+  <copy file="${interface-jar}/${jar-file}" todir="classes" />
+  </target>
+
+  <target name="Compile" depends="Init"  
+        description="compile the source " >
+    <javac srcdir="src" destdir="classes"
+         includes="${package}/*.java"
+       classpath="classes/${jar-file}" 
+       includeantruntime="false"/>
+  </target>
+
+  <target name="Run" depends="Compile" 
+          description="Run thr client" >
+    <java classname="${package}.${client-class}" fork="true">
+      <classpath>
+         <pathelement location="classes/${jar-file}" />
+         <pathelement path="classes" />
+      </classpath>
+      <arg line="${host} ${port}" />
+    </java>
+  </target>
+
+</project>
+
+
+
+
+

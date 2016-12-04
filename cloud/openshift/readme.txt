@@ -1,0 +1,1 @@
+http://myapp-distrjava.rhcloud.com

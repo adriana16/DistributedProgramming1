@@ -1,0 +1,1 @@
+Se creaza catalogul lib care se completeaza cu snakeyaml-*.jar.

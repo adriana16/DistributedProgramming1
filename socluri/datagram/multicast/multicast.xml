@@ -1,0 +1,27 @@
+<project name="Multicast" default="Compile" basedir=".">
+    <description> multicast  </description>
+  
+    <!-- set global properties for this build -->
+    <property name="build" location="work"/>
+
+  <target name="init">
+        <!-- Create the time stamp -->
+        <tstamp/>
+        <!-- Create the build directory structure used by compile -->
+        <delete dir="${build}"/>
+        <mkdir dir="${build}"/>
+  </target>
+
+  <target name="Compile" depends="init"
+      description="compile the source" >
+      <javac srcdir="." destdir="${build}" includeantruntime="false"/>
+  </target>
+
+  <target name="Server"> 
+     <java classname="MulticastServer" classpath="${build}" fork="true"/>
+  </target>
+
+  <target name="Client">
+    <java classname="MulticastClient" classpath="${build}" fork="true"/>
+  </target> 
+</project>

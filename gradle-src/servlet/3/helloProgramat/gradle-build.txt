@@ -1,0 +1,11 @@
+apply plugin: 'war'
+
+repositories{
+  flatDir{
+    dirs 'lib'
+  }
+}
+
+dependencies{
+  providedCompile 'javax.servlet:servlet-api:3.0'
+}

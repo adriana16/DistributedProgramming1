@@ -1,0 +1,1 @@
+mvn archetype:create -DgroupId=hello -DartifactId=helloname -DarchetypeArtifactId=maven-archetype-webapp

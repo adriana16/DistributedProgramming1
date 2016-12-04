@@ -1,0 +1,13 @@
+apply plugin: 'application'
+mainClassName='CmmdcServer'
+
+run {
+    classpath = sourceSets.main.runtimeClasspath
+    classpath.each { println it }
+   
+    /* Need to split the space-delimited value in the exec.args */
+    args System.getProperty("exec.args").split(" ")
+    args.each {println it}
+}
+
+
